@@ -40,3 +40,10 @@ Instead, I modified the raw script to deal with reads (fastq) from SRA or Encode
    
 - If others:
   Please modify the `alignBowtie` function (line 17) in `mango_encode.R` or `mango_SRA.R` to make sure you can obtain the right sorted sam file ~
+
+## Install
+
+shell:
+``` shell
+git clone https://github.com/dphansti/mango.git
+R CMD INSTALL --no-multiarch --with-keep.source mango
