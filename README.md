@@ -41,9 +41,44 @@ Instead, I modified the raw script to deal with reads (fastq) from SRA or Encode
 - If others:
   Please modify the `alignBowtie` function (line 17) in `mango_encode.R` or `mango_SRA.R` to make sure you can obtain the right sorted sam file ~
 
-## Install
+## Install (same with the original Mango, for my personal use)
 
-shell:
+step1 shell:
 ``` shell
-git clone https://github.com/dphansti/mango.git
+git clone https://github.com/wangjk321/mango_multithreads_wang.git
+mv mango_multithreads_wang mango
 R CMD INSTALL --no-multiarch --with-keep.source mango
+```
+
+step2 R:
+``` R
+install.packages('hash')
+install.packages('Rcpp')
+install.packages('optparse')
+install.packages('readr')
+```
+
+step3 run the Mango
+``` shell
+FASTQ=`ls fastq |cut -f 1-7 -d '_'|sort|uniq`
+
+build=hg38
+index=/home/Database/bowtie-indexes/UCSC-$build
+gt=/home/Database/UCSC/$build/genome_table
+mango="Rscript ~/software/mango/mango/mango_encode.R"
+mkdir -p mango
+
+for i in $FASTQ
+do
+        echo $i
+        $mango --fastq1 fastq/${i}_1.fastq.gz \
+           --fastq2 fastq/${i}_2.fastq.gz \
+           --prefix mango/${i} \
+           --bowtieref $index \
+           --bedtoolsgenome $gt \
+           --chromexclude chrM,chrY \
+           --stages 1:5 \
+           --reportallpairs TRUE \
+           --MACS_qvalue 0.05
+done
+```
