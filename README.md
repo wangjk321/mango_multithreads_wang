@@ -1,5 +1,7 @@
 # Modified mango for multi-threads
 
+## What is the bugs
+
 One biggest problem of using Mango pipeline for analyzing ChIA-PET is that they can not support multi threads (cpu):
 > Threads option is currently disabled to due to errors. We are working on a solution !!
 
@@ -13,6 +15,8 @@ Another point is that:
 - SAM files being produced by Mango are not canonical SAM files (i.e., they have no headers)
 
 So we cannot use samtools to sort.
+
+## How to solve
 
 Instead, I modified the raw script to deal with reads (fastq) from SRA or Encode:
 - If your reads name of fastq is like:
