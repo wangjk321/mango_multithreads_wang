@@ -50,7 +50,7 @@ mv mango_multithreads_wang mango
 R CMD INSTALL --no-multiarch --with-keep.source mango
 ```
 
-step2 R:
+step2 (required package) R:
 ``` R
 install.packages('hash')
 install.packages('Rcpp')
