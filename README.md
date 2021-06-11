@@ -9,7 +9,7 @@ Their bugs comes from the bowtie mapping step. Two important point for this bugs
 - Mango requires that Fastq files are perfectly matched
 - The sam files should still be in the same order as the fastq files
 
-If you use multi-threads for bowtiw alignments, the sorts of reads in sam file would be 'out-of-order'
+If you use multi-threads for bowtie alignments, the sorts of reads in sam file would be 'out-of-order'
 
 Another point is that:
 - SAM files being produced by Mango are not canonical SAM files (i.e., they have no headers)
